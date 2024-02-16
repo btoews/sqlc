@@ -43,6 +43,7 @@ type Options struct {
 	OmitSqlcVersion             bool              `json:"omit_sqlc_version,omitempty" yaml:"omit_sqlc_version"`
 	OmitUnusedStructs           bool              `json:"omit_unused_structs,omitempty" yaml:"omit_unused_structs"`
 	BuildTags                   string            `json:"build_tags,omitempty" yaml:"build_tags"`
+	QueriesName                 string            `json:"queries_name" yaml:"queries_name"`
 }
 
 type GlobalOptions struct {
@@ -97,6 +98,10 @@ func parseOpts(req *plugin.GenerateRequest) (*Options, error) {
 	if options.QueryParameterLimit == nil {
 		options.QueryParameterLimit = new(int32)
 		*options.QueryParameterLimit = 1
+	}
+
+	if options.QueriesName == "" {
+		options.QueriesName = "Queries"
 	}
 
 	return &options, nil

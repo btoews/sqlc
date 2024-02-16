@@ -18,6 +18,7 @@ import (
 
 type tmplCtx struct {
 	Q           string
+	QueriesName string
 	Package     string
 	SQLDriver   SQLDriver
 	Enums       []Enum
@@ -181,6 +182,7 @@ func generate(req *plugin.GenerateRequest, options *opts.Options, enums []Enum, 
 		UsesBatch:                 usesBatch(queries),
 		SQLDriver:                 parseDriver(options.SqlPackage),
 		Q:                         "`",
+		QueriesName:               options.QueriesName,
 		Package:                   options.Package,
 		Enums:                     enums,
 		Structs:                   structs,
